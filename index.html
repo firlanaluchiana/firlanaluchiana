@@ -7,6 +7,58 @@
     <title>Firlana Luchiana Dewi - Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind config for custom animations
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-ring': 'pulse-ring 2s ease-out infinite',
+                        'gradient-shift': 'gradientShift 15s ease infinite',
+                        'typing': 'typing 5s steps(80, end), blink-caret .75s step-end infinite',
+                        'fadeInUp': 'fadeInUp 0.6s ease-out forwards',
+                        'slideInLeft': 'slideInLeft 0.8s ease-out forwards',
+                        'slideInRight': 'slideInRight 0.8s ease-out forwards',
+                        'bounceIn': 'bounceIn 1s ease-out forwards',
+                        'rotateIn': 'rotateIn 0.8s ease-out forwards'
+                    },
+                    keyframes: {
+                        typing: {
+                            'from': { width: '0' },
+                            'to': { width: '100%' }
+                        },
+                        'blink-caret': {
+                            'from, to': { 'border-color': 'transparent' },
+                            '50%': { 'border-color': 'white' }
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-100px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(100px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        bounceIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.3)' },
+                            '50%': { opacity: '1', transform: 'scale(1.05)' },
+                            '70%': { transform: 'scale(0.9)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' }
+                        },
+                        rotateIn: {
+                            '0%': { opacity: '0', transform: 'rotate(-180deg) scale(0.5)' },
+                            '100%': { opacity: '1', transform: 'rotate(0deg) scale(1)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -243,8 +295,186 @@
             transition: all 0.3s ease;
         }
 
+        /* Interactive hover effects */
+        .interactive-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                0 0 30px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Typing animation */
+        .name-container {
+            overflow: visible;
+            width: 100%;
+        }
+
+        .typing-text {
+            overflow: hidden;
+            border-right: 3px solid white;
+            white-space: nowrap;
+            margin: 0;
+            letter-spacing: .05em;
+            animation: typing 5s steps(80, end), blink-caret .75s step-end infinite;
+            width: fit-content;
+            max-width: 100%;
+            display: inline-block;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: white
+            }
+        }
+
+        /* Glowing effects */
+        .glow-on-hover {
+            position: relative;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease infinite;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .glow-on-hover:hover {
+            box-shadow:
+                0 0 20px rgba(102, 126, 234, 0.6),
+                0 0 40px rgba(118, 75, 162, 0.4),
+                0 0 60px rgba(240, 147, 251, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Magnetic effect */
+        .magnetic {
+            transition: transform 0.2s ease-out;
+        }
+
+        /* Parallax scrolling elements */
+        .parallax {
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Morphing buttons */
+        .morph-btn {
+            position: relative;
+            overflow: hidden;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .morph-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .morph-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Liquid animation */
+        .liquid-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .liquid-effect::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: top 0.3s ease;
+            z-index: -1;
+        }
+
+        .liquid-effect:hover::after {
+            top: 0;
+        }
+
+        /* Neon text effect */
+        .neon-text {
+            text-shadow:
+                0 0 5px rgba(255, 255, 255, 0.8),
+                0 0 10px rgba(102, 126, 234, 0.6),
+                0 0 15px rgba(102, 126, 234, 0.4),
+                0 0 20px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Progress bars with animation */
+        .skill-progress {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 8px;
+        }
+
+        .skill-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            border-radius: 10px;
+            transition: width 2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shine-skill 2s infinite;
+        }
+
+        @keyframes shine-skill {
+            0% {
+                left: -100%;
+            }
+
+            50% {
+                left: 100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
         .timeline-item:hover {
-            transform: translateX(5px);
+            transform: translateX(10px) scale(1.02);
         }
     </style>
 </head>
@@ -260,107 +490,144 @@
     <div class="particle"></div>
     <div class="particle"></div>
     <div class="particle"></div>
-    <div class="particle"></div>
-
-    <!-- Header Section -->
-    <header class="header-bg text-white py-12 px-4 md:px-8 lg:px-16">
+    <div class="particle"></div> <!-- Header Section -->
+    <header class="header-bg text-white py-8 md:py-12 px-4 md:px-8 lg:px-16">
         <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="md:w-1/2 mb-8 md:mb-0">
-                    <h1
-                        class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 hover:scale-105 transition-transform duration-300">
-                        Firlana Luchiana Dewi</h1>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0">
+                <div class="w-full md:w-1/2 text-center md:text-left">
+                    <div class="name-container w-full overflow-visible">
+                        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 hover:scale-105 transition-transform duration-300 neon-text typing-text"
+                            data-text="Firlana Luchiana Dewi">
+                            Firlana Luchiana Dewi</h1>
+                    </div>
                     <h2
-                        class="text-xl md:text-2xl text-white text-opacity-90 mb-4 hover:text-opacity-100 transition-all duration-300">
+                        class="text-lg sm:text-xl md:text-2xl text-white text-opacity-90 mb-4 hover:text-opacity-100 transition-all duration-300 animate-slideInLeft">
                         Administration & Data Systems Specialist</h2>
                     <p
-                        class="text-white text-opacity-80 mb-6 max-w-lg hover:text-opacity-100 transition-all duration-300">
+                        class="text-sm sm:text-base text-white text-opacity-80 mb-6 max-w-lg mx-auto md:mx-0 hover:text-opacity-100 transition-all duration-300 animate-fadeInUp">
                         Detail-oriented professional with expertise in data administration, database management, and
                         backend development.
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <div class="flex items-center hover:scale-105 transition-transform duration-300">
-                            <i class="fas fa-map-marker-alt mr-2"></i>
-                            <span>Jakarta Barat, Indonesia</span>
+                    <div
+                        class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center md:justify-start animate-bounceIn">
+                        <div
+                            class="flex items-center justify-center md:justify-start hover:scale-105 transition-transform duration-300 magnetic glow-on-hover p-2 rounded-lg">
+                            <i class="fas fa-map-marker-alt mr-2 flex-shrink-0"></i>
+                            <span class="text-sm sm:text-base">Jakarta Barat, Indonesia</span>
                         </div>
-                        <div class="flex items-center hover:scale-105 transition-transform duration-300">
-                            <i class="fas fa-envelope mr-2"></i>
-                            <span>friuchiana55@gmail.com</span>
+                        <div
+                            class="flex items-center justify-center md:justify-start hover:scale-105 transition-transform duration-300 magnetic glow-on-hover p-2 rounded-lg">
+                            <i class="fas fa-envelope mr-2 flex-shrink-0"></i>
+                            <span class="text-sm sm:text-base break-all">friuchiana55@gmail.com</span>
                         </div>
-                        <div class="flex items-center hover:scale-105 transition-transform duration-300">
-                            <i class="fas fa-phone mr-2"></i>
-                            <span>081389106906</span>
+                        <div
+                            class="flex items-center justify-center md:justify-start hover:scale-105 transition-transform duration-300 magnetic glow-on-hover p-2 rounded-lg">
+                            <i class="fas fa-phone mr-2 flex-shrink-0"></i>
+                            <span class="text-sm sm:text-base">081389106906</span>
                         </div>
                     </div>
                 </div>
-                <div class="md:w-1/3 flex justify-center">
+                <div class="w-full md:w-1/3 flex justify-center animate-rotateIn">
                     <div
-                        class="w-48 h-48 md:w-56 md:h-56 rounded-full bg-white bg-opacity-20 border-4 border-white border-opacity-30 relative overflow-hidden profile-icon shadow-2xl">
+                        class="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full bg-white bg-opacity-20 border-4 border-white border-opacity-30 relative overflow-hidden profile-icon shadow-2xl flex-shrink-0 interactive-card">
                         <div
                             class="absolute inset-0 bg-gradient-to-br from-transparent via-white/15 to-transparent animate-shine">
                         </div>
                         <img src="luchi.jpeg" alt="Firlana Luchiana Dewi"
-                            class="w-full h-full object-cover rounded-full relative z-10">
+                            class="w-full h-full object-cover rounded-full relative z-10 transition-transform duration-500 hover:scale-110">
+                        <!-- Photo overlay with info on hover -->
+                        <div
+                            class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100 rounded-full">
+                            <div class="text-center text-white">
+                                <i class="fas fa-camera text-2xl mb-2"></i>
+                                <p class="text-sm">Professional Photo</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="container mx-auto py-12 px-4 md:px-8 lg:px-16"> <!-- About Section -->
-        <section class="mb-16">
+    </header> <!-- Main Content -->
+    <main class="container mx-auto py-8 md:py-12 px-4 md:px-8 lg:px-16"> <!-- About Section -->
+        <section class="mb-12 md:mb-16">
             <h2
-                class="text-2xl md:text-3xl font-bold mb-6 text-white flex items-center hover:scale-105 transition-transform duration-300">
-                <i class="fas fa-user-circle mr-3"></i> About Me
+                class="text-xl sm:text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white flex items-center justify-center md:justify-start hover:scale-105 transition-transform duration-300 neon-text">
+                <i class="fas fa-user-circle mr-2 md:mr-3 animate-spin-slow"></i> About Me
             </h2>
             <div
-                class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6">
-                <p class="text-gray-700 mb-4">
-                    I am a graduate of Computer Science from Ahmad Dahlan University with experience in data
-                    administration, database system management, and backend development.
-                </p>
-                <p class="text-gray-700">
-                    I possess strong attention to detail, analytical skills, and technical abilities including data
-                    processing, REST API development, and digital platform-based stock management (Shopee, TikTok).
-                </p>
+                class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-4 md:p-6 interactive-card liquid-effect">
+                <div class="relative z-10">
+                    <p class="text-gray-700 mb-3 md:mb-4 text-sm sm:text-base animate-slideInLeft">
+                        I am a graduate of Computer Science from Ahmad Dahlan University with experience in data
+                        administration, database system management, and backend development.
+                    </p>
+                    <p class="text-gray-700 text-sm sm:text-base animate-slideInRight">
+                        I possess strong attention to detail, analytical skills, and technical abilities including data
+                        processing, REST API development, and digital platform-based stock management (Shopee, TikTok).
+                    </p>
+                    <!-- Interactive stats -->
+                    <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-200">
+                        <div class="text-center group">
+                            <div
+                                class="text-2xl font-bold text-indigo-600 group-hover:scale-110 transition-transform duration-300">
+                                3+</div>
+                            <div class="text-xs text-gray-600">Years Experience</div>
+                        </div>
+                        <div class="text-center group">
+                            <div
+                                class="text-2xl font-bold text-indigo-600 group-hover:scale-110 transition-transform duration-300">
+                                5+</div>
+                            <div class="text-xs text-gray-600">Projects Completed</div>
+                        </div>
+                        <div class="text-center group">
+                            <div
+                                class="text-2xl font-bold text-indigo-600 group-hover:scale-110 transition-transform duration-300">
+                                2</div>
+                            <div class="text-xs text-gray-600">Certifications</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section> <!-- Experience Section -->
-        <section class="mb-16 section-animate">
+        </section><!-- Experience Section -->
+        <section class="mb-12 md:mb-16 section-animate">
             <h2
-                class="text-2xl md:text-3xl font-bold mb-6 text-white flex items-center hover:scale-105 transition-transform duration-300">
-                <i class="fas fa-briefcase mr-3"></i> Professional Experience
+                class="text-xl sm:text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white flex items-center justify-center md:justify-start hover:scale-105 transition-transform duration-300">
+                <i class="fas fa-briefcase mr-2 md:mr-3"></i> Professional Experience
             </h2>
             <div class="relative">
-                <div class="border-l-2 border-indigo-200 absolute h-full left-4 md:left-6 top-0"></div>
+                <div class="border-l-2 border-indigo-200 absolute h-full left-2 md:left-4 lg:left-6 top-0"></div>
                 <!-- Experience 1 -->
-                <div class="relative pl-12 md:pl-16 mb-10">
+                <div class="relative pl-8 md:pl-12 lg:pl-16 mb-8 md:mb-10">
                     <div
-                        class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6 timeline-item">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
-                            <h3 class="text-xl font-bold text-indigo-700">Admin General (Shop Operator)</h3>
-                            <span class="text-indigo-600 font-medium bg-indigo-50 px-3 py-1 rounded-full text-sm">Apr
+                        class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-4 md:p-6 timeline-item">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-3 md:mb-4">
+                            <h3 class="text-lg md:text-xl font-bold text-indigo-700 mb-2 md:mb-0">Admin General (Shop
+                                Operator)</h3>
+                            <span
+                                class="text-indigo-600 font-medium bg-indigo-50 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">Apr
                                 2024 - Present</span>
                         </div>
-                        <h4 class="text-gray-600 font-medium mb-3">PT HIGOOD LIVE INDONESIA</h4>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                        <h4 class="text-gray-600 font-medium mb-2 md:mb-3 text-sm md:text-base">PT HIGOOD LIVE INDONESIA
+                        </h4>
+                        <ul class="list-disc pl-4 md:pl-5 text-gray-700 space-y-1 md:space-y-2 text-sm md:text-base">
                             <li>Managed new product data systems, inventory, and purchases</li>
                             <li>Created and monitored product displays on Shopee and TikTok</li>
                             <li>Led teams for operational efficiency</li>
                         </ul>
                     </div>
-                </div>
-                <!-- Experience 2 -->
-                <div class="relative pl-12 md:pl-16 mb-10">
+                </div> <!-- Experience 2 -->
+                <div class="relative pl-8 md:pl-12 lg:pl-16 mb-8 md:mb-10">
                     <div
-                        class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6 timeline-item">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
-                            <h3 class="text-xl font-bold text-indigo-700">Administration Staff</h3>
-                            <span class="text-indigo-600 font-medium bg-indigo-50 px-3 py-1 rounded-full text-sm">Jul
+                        class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-4 md:p-6 timeline-item">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-3 md:mb-4">
+                            <h3 class="text-lg md:text-xl font-bold text-indigo-700 mb-2 md:mb-0">Administration Staff
+                            </h3>
+                            <span
+                                class="text-indigo-600 font-medium bg-indigo-50 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">Jul
                                 2023 - Oct 2023</span>
                         </div>
-                        <h4 class="text-gray-600 font-medium mb-3">Gotosovie Indonesia</h4>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                        <h4 class="text-gray-600 font-medium mb-2 md:mb-3 text-sm md:text-base">Gotosovie Indonesia</h4>
+                        <ul class="list-disc pl-4 md:pl-5 text-gray-700 space-y-1 md:space-y-2 text-sm md:text-base">
                             <li>Managed product shipping administration and stock updates</li>
                             <li>Input customer data and receipts into the database</li>
                             <li>Restocked products across multiple platforms</li>
@@ -368,204 +635,224 @@
                     </div>
                 </div>
                 <!-- Experience 3 -->
-                <div class="relative pl-12 md:pl-16 mb-10">
+                <div class="relative pl-8 md:pl-12 lg:pl-16 mb-8 md:mb-10">
                     <div
-                        class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6 timeline-item">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
-                            <h3 class="text-xl font-bold text-indigo-700">Backend Engineering Intern</h3>
-                            <span class="text-indigo-600 font-medium bg-indigo-50 px-3 py-1 rounded-full text-sm">Aug
+                        class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-4 md:p-6 timeline-item">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-3 md:mb-4">
+                            <h3 class="text-lg md:text-xl font-bold text-indigo-700 mb-2 md:mb-0">Backend Engineering
+                                Intern</h3>
+                            <span
+                                class="text-indigo-600 font-medium bg-indigo-50 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">Aug
                                 2022 - Dec 2022</span>
                         </div>
-                        <h4 class="text-gray-600 font-medium mb-3">PT Qatros Teknologi Nusantara</h4>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                        <h4 class="text-gray-600 font-medium mb-2 md:mb-3 text-sm md:text-base">PT Qatros Teknologi
+                            Nusantara</h4>
+                        <ul class="list-disc pl-4 md:pl-5 text-gray-700 space-y-1 md:space-y-2 text-sm md:text-base">
                             <li>Developed REST API (Ruby on Rails) for Gompu application</li>
                             <li>Designed database schema and queries for mentor/course features</li>
                         </ul>
                     </div>
                 </div>
                 <!-- Experience 4 -->
-                <div class="relative pl-12 md:pl-16">
+                <div class="relative pl-8 md:pl-12 lg:pl-16">
                     <div
-                        class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6 timeline-item">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
-                            <h3 class="text-xl font-bold text-indigo-700">Bootcamp Backend Engineering</h3>
-                            <span class="text-indigo-600 font-medium bg-indigo-50 px-3 py-1 rounded-full text-sm">Feb
+                        class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-4 md:p-6 timeline-item">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-3 md:mb-4">
+                            <h3 class="text-lg md:text-xl font-bold text-indigo-700 mb-2 md:mb-0">Bootcamp Backend
+                                Engineering</h3>
+                            <span
+                                class="text-indigo-600 font-medium bg-indigo-50 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">Feb
                                 2022 - Jul 2022</span>
                         </div>
-                        <h4 class="text-gray-600 font-medium mb-3">Ruang Guru</h4>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                        <h4 class="text-gray-600 font-medium mb-2 md:mb-3 text-sm md:text-base">Ruang Guru</h4>
+                        <ul class="list-disc pl-4 md:pl-5 text-gray-700 space-y-1 md:space-y-2 text-sm md:text-base">
                             <li>Created REST API with Golang (Gin framework) and MySQL</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section> <!-- Projects Section -->
-        <section class="mb-16 section-animate">
+        <section class="mb-12 md:mb-16 section-animate">
             <h2
-                class="text-2xl md:text-3xl font-bold mb-6 text-white flex items-center hover:scale-105 transition-transform duration-300">
-                <i class="fas fa-project-diagram mr-3"></i> Related Projects
+                class="text-xl sm:text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white flex items-center justify-center md:justify-start hover:scale-105 transition-transform duration-300">
+                <i class="fas fa-project-diagram mr-2 md:mr-3"></i> Related Projects
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Project 1 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden project-card transition-all duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-indigo-100 p-3 rounded-lg mr-4">
-                                <i class="fas fa-boxes text-indigo-600 text-xl"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"> <!-- Project 1 -->
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden project-card transition-all duration-300 interactive-card morph-btn group">
+                    <div class="p-4 md:p-6 relative z-10">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center mb-3 md:mb-4">
+                            <div
+                                class="bg-indigo-100 p-2 md:p-3 rounded-lg mb-2 sm:mb-0 sm:mr-3 md:mr-4 flex-shrink-0 group-hover:rotate-12 transition-transform duration-300">
+                                <i class="fas fa-boxes text-indigo-600 text-lg md:text-xl"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800">Digital Stock Management System</h3>
+                            <h3
+                                class="text-lg md:text-xl font-bold text-gray-800 leading-tight group-hover:text-indigo-600 transition-colors duration-300">
+                                Digital Stock Management System</h3>
                         </div>
-                        <p class="text-gray-600 mb-4">
+                        <p class="text-gray-600 mb-4 text-sm md:text-base">
                             Improved stock accuracy by 30% through digital platform tools.
                         </p>
-                        <div class="flex flex-wrap gap-2">
+                        <div class="flex flex-wrap gap-1 md:gap-2">
                             <span
-                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">Shopee</span>
+                                class="text-xs font-medium px-2 md:px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors duration-300">Shopee</span>
                             <span
-                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">TikTok</span>
+                                class="text-xs font-medium px-2 md:px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors duration-300">TikTok</span>
                             <span
-                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">Excel</span>
+                                class="text-xs font-medium px-2 md:px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors duration-300">Excel</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden project-card transition-all duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-indigo-100 p-3 rounded-lg mr-4">
-                                <i class="fas fa-mobile-alt text-indigo-600 text-xl"></i>
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden project-card transition-all duration-300 interactive-card morph-btn group">
+                    <div class="p-4 md:p-6 relative z-10">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center mb-3 md:mb-4">
+                            <div
+                                class="bg-indigo-100 p-2 md:p-3 rounded-lg mb-2 sm:mb-0 sm:mr-3 md:mr-4 flex-shrink-0 group-hover:rotate-12 transition-transform duration-300">
+                                <i class="fas fa-mobile-alt text-indigo-600 text-lg md:text-xl"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800">Gompu Application (Backend)</h3>
+                            <h3
+                                class="text-lg md:text-xl font-bold text-gray-800 leading-tight group-hover:text-indigo-600 transition-colors duration-300">
+                                Gompu Application (Backend)</h3>
                         </div>
-                        <p class="text-gray-600 mb-4">
+                        <p class="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">
                             Developed API for mentor, course, and reward features.
                         </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">Ruby
+                        <div class="flex flex-wrap gap-1 md:gap-2">
+                            <span
+                                class="text-xs font-medium px-2 md:px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors duration-300">Ruby
                                 on Rails</span>
                             <span
-                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">PostgreSQL</span>
-                            <span class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">REST
+                                class="text-xs font-medium px-2 md:px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors duration-300">PostgreSQL</span>
+                            <span
+                                class="text-xs font-medium px-2 md:px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors duration-300">REST
                                 API</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden project-card transition-all duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-indigo-100 p-3 rounded-lg mr-4">
-                                <i class="fas fa-laptop-code text-indigo-600 text-xl"></i>
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden project-card transition-all duration-300 md:col-span-2 lg:col-span-1 interactive-card morph-btn group">
+                    <div class="p-4 md:p-6 relative z-10">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center mb-3 md:mb-4">
+                            <div
+                                class="bg-indigo-100 p-2 md:p-3 rounded-lg mb-2 sm:mb-0 sm:mr-3 md:mr-4 flex-shrink-0 group-hover:rotate-12 transition-transform duration-300">
+                                <i class="fas fa-laptop-code text-indigo-600 text-lg md:text-xl"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800">Learning Website</h3>
+                            <h3
+                                class="text-lg md:text-xl font-bold text-gray-800 leading-tight group-hover:text-indigo-600 transition-colors duration-300">
+                                Learning Website</h3>
                         </div>
-                        <p class="text-gray-600 mb-4">
+                        <p class="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">
                             Course material management system for educational purposes.
                         </p>
-                        <div class="flex flex-wrap gap-2">
+                        <div class="flex flex-wrap gap-1 md:gap-2">
                             <span
-                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">Golang</span>
+                                class="text-xs font-medium px-2 md:px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors duration-300">Golang</span>
                             <span
-                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">Gin</span>
+                                class="text-xs font-medium px-2 md:px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors duration-300">Gin</span>
                             <span
-                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">MySQL</span>
+                                class="text-xs font-medium px-2 md:px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors duration-300">MySQL</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Education & Skills Section -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 section-animate"> <!-- Education Section -->
+        </section> <!-- Education & Skills Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16 section-animate">
+            <!-- Education Section -->
             <section>
                 <h2
-                    class="text-2xl md:text-3xl font-bold mb-6 text-white flex items-center hover:scale-105 transition-transform duration-300">
-                    <i class="fas fa-graduation-cap mr-3"></i> Education & Certifications
+                    class="text-xl sm:text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white flex items-center justify-center lg:justify-start hover:scale-105 transition-transform duration-300">
+                    <i class="fas fa-graduation-cap mr-2 md:mr-3"></i> Education & Certifications
                 </h2>
                 <div
-                    class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6">
-                    <div class="mb-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Bachelor of Computer Science</h3>
-                        <h4 class="text-gray-600 font-medium mb-1">Ahmad Dahlan University (2019-2023)</h4>
-                        <p class="text-gray-600">Active in campus committees and organizations</p>
+                    class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-4 md:p-6">
+                    <div class="mb-4 md:mb-6">
+                        <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">Bachelor of Computer Science
+                        </h3>
+                        <h4 class="text-gray-600 font-medium mb-1 text-sm md:text-base">Ahmad Dahlan University
+                            (2019-2023)</h4>
+                        <p class="text-gray-600 text-sm md:text-base">Active in campus committees and organizations</p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Certifications</h3>
-                        <ul class="space-y-3">
+                        <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2">Certifications</h3>
+                        <ul class="space-y-2 md:space-y-3">
                             <li class="flex items-start">
-                                <i class="fas fa-certificate text-indigo-500 mt-1 mr-2"></i>
-                                <span>Backend Engineering - Ruang Guru (2022)</span>
+                                <i class="fas fa-certificate text-indigo-500 mt-1 mr-2 flex-shrink-0"></i>
+                                <span class="text-sm md:text-base">Backend Engineering - Ruang Guru (2022)</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-certificate text-indigo-500 mt-1 mr-2"></i>
-                                <span>Backend Engineering - Qatros Teknologi (2022)</span>
+                                <i class="fas fa-certificate text-indigo-500 mt-1 mr-2 flex-shrink-0"></i>
+                                <span class="text-sm md:text-base">Backend Engineering - Qatros Teknologi (2022)</span>
                             </li>
                         </ul>
                     </div>
                 </div>
-            </section> <!-- Skills Section -->
+            </section>
+            <!-- Skills Section -->
             <section>
                 <h2
-                    class="text-2xl md:text-3xl font-bold mb-6 text-white flex items-center hover:scale-105 transition-transform duration-300">
-                    <i class="fas fa-tools mr-3"></i> Skills
+                    class="text-xl sm:text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white flex items-center justify-center lg:justify-start hover:scale-105 transition-transform duration-300">
+                    <i class="fas fa-tools mr-2 md:mr-3"></i> Skills
                 </h2>
                 <div
-                    class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6">
-                    <div class="mb-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Technical Skills</h3>
-                        <div class="flex flex-wrap gap-3">
+                    class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-4 md:p-6">
+                    <div class="mb-4 md:mb-6">
+                        <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4">Technical Skills</h3>
+                        <div class="flex flex-wrap gap-2 md:gap-3 mt-4">
                             <span
-                                class="skill-badge bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium shadow-sm backdrop-filter backdrop-blur-sm">Database
+                                class="skill-badge bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium shadow-sm backdrop-filter backdrop-blur-sm morph-btn">Database
                                 Management</span>
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">REST
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm morph-btn">REST
                                 API Development</span>
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Microsoft
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm morph-btn">Microsoft
                                 Office</span>
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Data
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm morph-btn">Data
                                 Entry</span>
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Ruby
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm morph-btn">Ruby
                                 on Rails</span>
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Golang</span>
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm morph-btn">Golang</span>
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">PostgreSQL</span>
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm morph-btn">PostgreSQL</span>
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">MySQL</span>
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm morph-btn">MySQL</span>
                         </div>
                     </div>
-                    <div class="mb-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Non-Technical Skills</h3>
-                        <div class="flex flex-wrap gap-3">
+                    <div class="mb-4 md:mb-6">
+                        <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4">Non-Technical Skills</h3>
+                        <div class="flex flex-wrap gap-2 md:gap-3">
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Time
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm">Time
                                 Management</span>
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Problem
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm">Problem
                                 Solving</span>
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Detail-oriented</span>
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm">Detail-oriented</span>
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Team
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm">Team
                                 Leadership</span>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Languages</h3>
-                        <div class="flex flex-wrap gap-3">
+                        <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4">Languages</h3>
+                        <div class="flex flex-wrap gap-2 md:gap-3">
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Indonesian
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm">Indonesian
                                 (Native)</span>
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">English
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm">English
                                 (Intermediate)</span>
                             <span
-                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Mandarin
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium backdrop-filter backdrop-blur-sm">Mandarin
                                 (Basic)</span>
                         </div>
                     </div>
@@ -574,38 +861,44 @@
         </div>
     </main> <!-- Footer/Contact Section -->
     <footer
-        class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg border-t border-white border-opacity-20 py-12 px-4 md:px-8 lg:px-16">
+        class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg border-t border-white border-opacity-20 py-8 md:py-12 px-4 md:px-8 lg:px-16">
         <div class="container mx-auto">
-            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center text-white">Get In Touch</h2>
-            <div class="flex flex-col md:flex-row justify-center items-center gap-8">
-                <a href="mailto:friuchiana55@gmail.com" class="flex items-center contact-icon">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center text-white">Get In Touch</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-8">
+                <a href="mailto:friuchiana55@gmail.com"
+                    class="flex flex-col md:flex-row items-center contact-icon text-center md:text-left magnetic glow-on-hover p-3 rounded-xl group">
                     <div
-                        class="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg p-4 rounded-full mr-4 border border-white border-opacity-30">
-                        <i class="fas fa-envelope text-white text-xl"></i>
+                        class="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg p-3 md:p-4 rounded-full mb-2 md:mb-0 md:mr-4 border border-white border-opacity-30 group-hover:rotate-12 transition-all duration-300">
+                        <i class="fas fa-envelope text-white text-lg md:text-xl"></i>
                     </div>
-                    <span class="text-white font-medium">friuchiana55@gmail.com</span>
+                    <span
+                        class="text-white font-medium text-sm md:text-base break-all group-hover:text-yellow-300 transition-colors duration-300">friuchiana55@gmail.com</span>
+                </a> <a href="https://wa.me/6281389106906" target="_blank" rel="noopener noreferrer"
+                    class="flex flex-col md:flex-row items-center contact-icon text-center md:text-left magnetic glow-on-hover p-3 rounded-xl group">
+                    <div
+                        class="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg p-3 md:p-4 rounded-full mb-2 md:mb-0 md:mr-4 border border-white border-opacity-30 group-hover:rotate-12 transition-all duration-300">
+                        <i class="fab fa-whatsapp text-white text-lg md:text-xl"></i>
+                    </div> <span
+                        class="text-white font-medium text-sm md:text-base group-hover:text-yellow-300 transition-colors duration-300">+62
+                        813 8910 6906</span>
                 </a>
-                <a href="tel:+6281389106906" class="flex items-center contact-icon">
+                <div
+                    class="flex flex-col md:flex-row items-center contact-icon text-center md:text-left magnetic glow-on-hover p-3 rounded-xl group">
                     <div
-                        class="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg p-4 rounded-full mr-4 border border-white border-opacity-30">
-                        <i class="fas fa-phone text-white text-xl"></i>
+                        class="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg p-3 md:p-4 rounded-full mb-2 md:mb-0 md:mr-4 border border-white border-opacity-30 group-hover:rotate-12 transition-all duration-300">
+                        <i class="fas fa-map-marker-alt text-white text-lg md:text-xl"></i>
                     </div>
-                    <span class="text-white font-medium">+62 813 8910 6906</span>
-                </a>
-                <div class="flex items-center contact-icon">
-                    <div
-                        class="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg p-4 rounded-full mr-4 border border-white border-opacity-30">
-                        <i class="fas fa-map-marker-alt text-white text-xl"></i>
-                    </div>
-                    <span class="text-white font-medium">Jakarta Barat, Indonesia</span>
+                    <span
+                        class="text-white font-medium text-sm md:text-base group-hover:text-yellow-300 transition-colors duration-300">Jakarta
+                        Barat, Indonesia</span>
                 </div>
             </div>
-            <div class="mt-12 pt-8 border-t border-white border-opacity-20 text-center text-white text-opacity-80">
-                <p>© 2025 Firlana Luchiana Dewi. All rights reserved.</p>
+            <div
+                class="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-white border-opacity-20 text-center text-white text-opacity-80">
+                <p class="text-sm md:text-base">© 2025 Firlana Luchiana Dewi. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
     <script>
         // Animation for all sections on scroll
         document.addEventListener('DOMContentLoaded', function () {
@@ -627,8 +920,70 @@
                 observer.observe(el);
             });
 
+            // Animate skill progress bars
+            const skillBars = document.querySelectorAll('.skill-animate, .project-progress');
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width + '%';
+                        }, 500);
+                        skillObserver.unobserve(bar);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            skillBars.forEach(bar => {
+                bar.style.width = '0%';
+                skillObserver.observe(bar);
+            });
+
+            // Magnetic effect for elements
+            const magneticElements = document.querySelectorAll('.magnetic');
+            magneticElements.forEach(el => {
+                el.addEventListener('mousemove', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    const distance = Math.sqrt(x * x + y * y);
+                    const maxDistance = 100;
+
+                    if (distance < maxDistance) {
+                        const force = (maxDistance - distance) / maxDistance;
+                        const translateX = x * force * 0.3;
+                        const translateY = y * force * 0.3;
+                        el.style.transform = `translate(${translateX}px, ${translateY}px)`;
+                    }
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    el.style.transform = 'translate(0, 0)';
+                });
+            });
+
+            // Parallax effect
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.parallax');
+                parallaxElements.forEach(el => {
+                    const rate = scrolled * -0.5;
+                    el.style.transform = `translateY(${rate}px)`;
+                });
+            });            // Typing animation restart
+            const typingText = document.querySelector('.typing-text');
+            if (typingText) {
+                setInterval(() => {
+                    typingText.style.animation = 'none';
+                    setTimeout(() => {
+                        typingText.style.animation = 'typing 5s steps(80, end), blink-caret .75s step-end infinite';
+                    }, 100);
+                }, 12000);
+            }
+
             // Add ripple effect to buttons
-            document.querySelectorAll('.skill-badge, .contact-icon').forEach(btn => {
+            document.querySelectorAll('.skill-badge, .contact-icon, .morph-btn').forEach(btn => {
                 btn.addEventListener('click', function (e) {
                     let x = e.clientX - e.target.getBoundingClientRect().left;
                     let y = e.clientY - e.target.getBoundingClientRect().top;
@@ -636,6 +991,12 @@
                     let ripples = document.createElement('span');
                     ripples.style.left = x + 'px';
                     ripples.style.top = y + 'px';
+                    ripples.style.position = 'absolute';
+                    ripples.style.background = 'rgba(255,255,255,0.5)';
+                    ripples.style.transform = 'translate(-50%, -50%)';
+                    ripples.style.pointerEvents = 'none';
+                    ripples.style.borderRadius = '50%';
+                    ripples.style.animation = 'ripple 1s linear';
                     this.appendChild(ripples);
 
                     setTimeout(() => {
@@ -643,7 +1004,82 @@
                     }, 1000);
                 });
             });
+
+            // Interactive card tilt effect
+            document.querySelectorAll('.interactive-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+                });
+            });
+
+            // Smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Random particle movement
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 20000);
+            }
+
+            // Create particles periodically
+            setInterval(createParticle, 3000);
+
+            // Add loading animation
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 500);
         });
+
+        // Cursor trail effect
+        let mouseX = 0, mouseY = 0;
+        let trailX = 0, trailY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateTrail() {
+            trailX += (mouseX - trailX) * 0.1;
+            trailY += (mouseY - trailY) * 0.1;
+
+            // You can add custom cursor trail here if needed
+            requestAnimationFrame(animateTrail);
+        }
+        animateTrail();
     </script>
 
     <style>
@@ -676,6 +1112,78 @@
             }
         }
 
+        /* Mobile responsiveness improvements */
+        @media (max-width: 768px) {
+            .header-bg {
+                padding: 2rem 1rem;
+            }
+
+            .typing-text {
+                font-size: 1.5rem !important;
+                line-height: 1.2;
+                width: fit-content;
+                max-width: 100%;
+                min-width: 280px;
+            }
+
+            .profile-icon {
+                width: 120px !important;
+                height: 120px !important;
+            }
+
+            .timeline-item {
+                padding-left: 0.5rem;
+                margin-left: 0;
+            }
+
+            .timeline-item::before {
+                left: -28px;
+                width: 12px;
+                height: 12px;
+            }
+
+            .project-card {
+                margin-bottom: 1rem;
+            }
+
+            .project-card h3 {
+                font-size: 1rem;
+                line-height: 1.2;
+            }
+
+            .skill-badge {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .contact-icon {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .contact-icon .bg-white {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .typing-text {
+                font-size: 1.25rem !important;
+                animation: typing 6s steps(90, end), blink-caret .75s step-end infinite;
+                letter-spacing: 0.03em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .typing-text {
+                font-size: 1rem !important;
+                animation: typing 7s steps(100, end), blink-caret .75s step-end infinite;
+                letter-spacing: 0.02em;
+            }
+        }
+
         /* Floating particles */
         .particle {
             position: fixed;
@@ -686,6 +1194,12 @@
             border-radius: 50%;
             animation: float-particle 15s infinite linear;
             z-index: -1;
+        }
+
+        @media (max-width: 768px) {
+            .particle {
+                display: none;
+            }
         }
 
         @keyframes float-particle {
@@ -766,6 +1280,119 @@
             left: 15%;
             animation-delay: 6s;
             animation-duration: 20s;
+        }
+
+        /* Loading animation */
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body:not(.loaded)::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        body.loaded::after {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Slow spin animation */
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin-slow {
+            animation: spin-slow 8s linear infinite;
+        }
+
+        /* Floating animation for profile */
+        .profile-icon:hover {
+            animation-play-state: paused;
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Enhanced glow effects */
+        .skill-badge:hover {
+            box-shadow:
+                0 0 15px rgba(102, 126, 234, 0.5),
+                0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #764ba2, #f093fb);
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: rgba(102, 126, 234, 0.3);
+            color: white;
+        }
+
+        /* Focus states for accessibility */
+        button:focus,
+        a:focus {
+            outline: 2px solid rgba(102, 126, 234, 0.5);
+            outline-offset: 2px;
+        }
+
+        /* Enhanced timeline */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Breathing animation for important elements */
+        @keyframes breathe {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .breathe {
+            animation: breathe 4s ease-in-out infinite;
         }
     </style>
 </body>
