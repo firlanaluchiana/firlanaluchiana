@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8 section-animate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firlana Luchiana Dewi - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #334155;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .header-bg {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+        }
+
+        .profile-icon {
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+        }
+
+        .profile-icon::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: pulse-ring 2s ease-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        .section-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .section-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-icon {
+            transition: all 0.3s ease;
+        }
+
+        .contact-icon:hover {
+            transform: scale(1.1);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #4f46e5;
+            border: 3px solid #e0e7ff;
+        }
+
+        .project-card {
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .project-icon {
+            transition: all 0.3s ease;
+        }
+
+        .contact-icon {
+            transition: all 0.3s ease;
+        }
+
+        .contact-icon:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        .animate-shine {
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        .timeline-item {
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+    <!-- Floating Particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <!-- Header Section -->
+    <header class="header-bg text-white py-12 px-4 md:px-8 lg:px-16">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1
+                        class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 hover:scale-105 transition-transform duration-300">
+                        Firlana Luchiana Dewi</h1>
+                    <h2
+                        class="text-xl md:text-2xl text-white text-opacity-90 mb-4 hover:text-opacity-100 transition-all duration-300">
+                        Administration & Data Systems Specialist</h2>
+                    <p
+                        class="text-white text-opacity-80 mb-6 max-w-lg hover:text-opacity-100 transition-all duration-300">
+                        Detail-oriented professional with expertise in data administration, database management, and
+                        backend development.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center hover:scale-105 transition-transform duration-300">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Jakarta Barat, Indonesia</span>
+                        </div>
+                        <div class="flex items-center hover:scale-105 transition-transform duration-300">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>friuchiana55@gmail.com</span>
+                        </div>
+                        <div class="flex items-center hover:scale-105 transition-transform duration-300">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span>081389106906</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/3 flex justify-center">
+                    <div
+                        class="w-48 h-48 md:w-56 md:h-56 rounded-full bg-white bg-opacity-20 border-4 border-white border-opacity-30 relative overflow-hidden profile-icon shadow-2xl">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-transparent via-white/15 to-transparent animate-shine">
+                        </div>
+                        <img src="luchi.jpeg" alt="Firlana Luchiana Dewi"
+                            class="w-full h-full object-cover rounded-full relative z-10">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto py-12 px-4 md:px-8 lg:px-16"> <!-- About Section -->
+        <section class="mb-16">
+            <h2
+                class="text-2xl md:text-3xl font-bold mb-6 text-white flex items-center hover:scale-105 transition-transform duration-300">
+                <i class="fas fa-user-circle mr-3"></i> About Me
+            </h2>
+            <div
+                class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6">
+                <p class="text-gray-700 mb-4">
+                    I am a graduate of Computer Science from Ahmad Dahlan University with experience in data
+                    administration, database system management, and backend development.
+                </p>
+                <p class="text-gray-700">
+                    I possess strong attention to detail, analytical skills, and technical abilities including data
+                    processing, REST API development, and digital platform-based stock management (Shopee, TikTok).
+                </p>
+            </div>
+        </section> <!-- Experience Section -->
+        <section class="mb-16 section-animate">
+            <h2
+                class="text-2xl md:text-3xl font-bold mb-6 text-white flex items-center hover:scale-105 transition-transform duration-300">
+                <i class="fas fa-briefcase mr-3"></i> Professional Experience
+            </h2>
+            <div class="relative">
+                <div class="border-l-2 border-indigo-200 absolute h-full left-4 md:left-6 top-0"></div>
+                <!-- Experience 1 -->
+                <div class="relative pl-12 md:pl-16 mb-10">
+                    <div
+                        class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6 timeline-item">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                            <h3 class="text-xl font-bold text-indigo-700">Admin General (Shop Operator)</h3>
+                            <span class="text-indigo-600 font-medium bg-indigo-50 px-3 py-1 rounded-full text-sm">Apr
+                                2024 - Present</span>
+                        </div>
+                        <h4 class="text-gray-600 font-medium mb-3">PT HIGOOD LIVE INDONESIA</h4>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Managed new product data systems, inventory, and purchases</li>
+                            <li>Created and monitored product displays on Shopee and TikTok</li>
+                            <li>Led teams for operational efficiency</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Experience 2 -->
+                <div class="relative pl-12 md:pl-16 mb-10">
+                    <div
+                        class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6 timeline-item">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                            <h3 class="text-xl font-bold text-indigo-700">Administration Staff</h3>
+                            <span class="text-indigo-600 font-medium bg-indigo-50 px-3 py-1 rounded-full text-sm">Jul
+                                2023 - Oct 2023</span>
+                        </div>
+                        <h4 class="text-gray-600 font-medium mb-3">Gotosovie Indonesia</h4>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Managed product shipping administration and stock updates</li>
+                            <li>Input customer data and receipts into the database</li>
+                            <li>Restocked products across multiple platforms</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Experience 3 -->
+                <div class="relative pl-12 md:pl-16 mb-10">
+                    <div
+                        class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6 timeline-item">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                            <h3 class="text-xl font-bold text-indigo-700">Backend Engineering Intern</h3>
+                            <span class="text-indigo-600 font-medium bg-indigo-50 px-3 py-1 rounded-full text-sm">Aug
+                                2022 - Dec 2022</span>
+                        </div>
+                        <h4 class="text-gray-600 font-medium mb-3">PT Qatros Teknologi Nusantara</h4>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Developed REST API (Ruby on Rails) for Gompu application</li>
+                            <li>Designed database schema and queries for mentor/course features</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Experience 4 -->
+                <div class="relative pl-12 md:pl-16">
+                    <div
+                        class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6 timeline-item">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                            <h3 class="text-xl font-bold text-indigo-700">Bootcamp Backend Engineering</h3>
+                            <span class="text-indigo-600 font-medium bg-indigo-50 px-3 py-1 rounded-full text-sm">Feb
+                                2022 - Jul 2022</span>
+                        </div>
+                        <h4 class="text-gray-600 font-medium mb-3">Ruang Guru</h4>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Created REST API with Golang (Gin framework) and MySQL</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- Projects Section -->
+        <section class="mb-16 section-animate">
+            <h2
+                class="text-2xl md:text-3xl font-bold mb-6 text-white flex items-center hover:scale-105 transition-transform duration-300">
+                <i class="fas fa-project-diagram mr-3"></i> Related Projects
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden project-card transition-all duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-boxes text-indigo-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Digital Stock Management System</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Improved stock accuracy by 30% through digital platform tools.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">Shopee</span>
+                            <span
+                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">TikTok</span>
+                            <span
+                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">Excel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden project-card transition-all duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-mobile-alt text-indigo-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Gompu Application (Backend)</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Developed API for mentor, course, and reward features.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">Ruby
+                                on Rails</span>
+                            <span
+                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">PostgreSQL</span>
+                            <span class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">REST
+                                API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden project-card transition-all duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-laptop-code text-indigo-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Learning Website</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Course material management system for educational purposes.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">Golang</span>
+                            <span
+                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">Gin</span>
+                            <span
+                                class="text-xs font-medium px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Skills Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 section-animate"> <!-- Education Section -->
+            <section>
+                <h2
+                    class="text-2xl md:text-3xl font-bold mb-6 text-white flex items-center hover:scale-105 transition-transform duration-300">
+                    <i class="fas fa-graduation-cap mr-3"></i> Education & Certifications
+                </h2>
+                <div
+                    class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Bachelor of Computer Science</h3>
+                        <h4 class="text-gray-600 font-medium mb-1">Ahmad Dahlan University (2019-2023)</h4>
+                        <p class="text-gray-600">Active in campus committees and organizations</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Certifications</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-certificate text-indigo-500 mt-1 mr-2"></i>
+                                <span>Backend Engineering - Ruang Guru (2022)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-certificate text-indigo-500 mt-1 mr-2"></i>
+                                <span>Backend Engineering - Qatros Teknologi (2022)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section> <!-- Skills Section -->
+            <section>
+                <h2
+                    class="text-2xl md:text-3xl font-bold mb-6 text-white flex items-center hover:scale-105 transition-transform duration-300">
+                    <i class="fas fa-tools mr-3"></i> Skills
+                </h2>
+                <div
+                    class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white border-opacity-20 p-6">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Technical Skills</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span
+                                class="skill-badge bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium shadow-sm backdrop-filter backdrop-blur-sm">Database
+                                Management</span>
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">REST
+                                API Development</span>
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Microsoft
+                                Office</span>
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Data
+                                Entry</span>
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Ruby
+                                on Rails</span>
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Golang</span>
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">PostgreSQL</span>
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">MySQL</span>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Non-Technical Skills</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Time
+                                Management</span>
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Problem
+                                Solving</span>
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Detail-oriented</span>
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Team
+                                Leadership</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Languages</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Indonesian
+                                (Native)</span>
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">English
+                                (Intermediate)</span>
+                            <span
+                                class="skill-badge bg-indigo-100 bg-opacity-80 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium backdrop-filter backdrop-blur-sm">Mandarin
+                                (Basic)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main> <!-- Footer/Contact Section -->
+    <footer
+        class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg border-t border-white border-opacity-20 py-12 px-4 md:px-8 lg:px-16">
+        <div class="container mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center text-white">Get In Touch</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                <a href="mailto:friuchiana55@gmail.com" class="flex items-center contact-icon">
+                    <div
+                        class="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg p-4 rounded-full mr-4 border border-white border-opacity-30">
+                        <i class="fas fa-envelope text-white text-xl"></i>
+                    </div>
+                    <span class="text-white font-medium">friuchiana55@gmail.com</span>
+                </a>
+                <a href="tel:+6281389106906" class="flex items-center contact-icon">
+                    <div
+                        class="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg p-4 rounded-full mr-4 border border-white border-opacity-30">
+                        <i class="fas fa-phone text-white text-xl"></i>
+                    </div>
+                    <span class="text-white font-medium">+62 813 8910 6906</span>
+                </a>
+                <div class="flex items-center contact-icon">
+                    <div
+                        class="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg p-4 rounded-full mr-4 border border-white border-opacity-30">
+                        <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                    </div>
+                    <span class="text-white font-medium">Jakarta Barat, Indonesia</span>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white border-opacity-20 text-center text-white text-opacity-80">
+                <p>© 2025 Firlana Luchiana Dewi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation for all sections on scroll
+        document.addEventListener('DOMContentLoaded', function () {
+            const animateElements = document.querySelectorAll('.section-animate, .project-card, .timeline-item');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('section-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add ripple effect to buttons
+            document.querySelectorAll('.skill-badge, .contact-icon').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    let x = e.clientX - e.target.getBoundingClientRect().left;
+                    let y = e.clientY - e.target.getBoundingClientRect().top;
+
+                    let ripples = document.createElement('span');
+                    ripples.style.left = x + 'px';
+                    ripples.style.top = y + 'px';
+                    this.appendChild(ripples);
+
+                    setTimeout(() => {
+                        ripples.remove();
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+
+    <style>
+        .skill-badge,
+        .contact-icon {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-badge span {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            border-radius: 50%;
+            animation: ripple 1s linear infinite;
+        }
+
+        @keyframes ripple {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 0.5;
+            }
+
+            100% {
+                width: 500px;
+                height: 500px;
+                opacity: 0;
+            }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float-particle 15s infinite linear;
+            z-index: -1;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .particle:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 12s;
+        }
+
+        .particle:nth-child(2) {
+            left: 20%;
+            animation-delay: 2s;
+            animation-duration: 15s;
+        }
+
+        .particle:nth-child(3) {
+            left: 30%;
+            animation-delay: 4s;
+            animation-duration: 18s;
+        }
+
+        .particle:nth-child(4) {
+            left: 40%;
+            animation-delay: 1s;
+            animation-duration: 14s;
+        }
+
+        .particle:nth-child(5) {
+            left: 50%;
+            animation-delay: 3s;
+            animation-duration: 16s;
+        }
+
+        .particle:nth-child(6) {
+            left: 60%;
+            animation-delay: 5s;
+            animation-duration: 13s;
+        }
+
+        .particle:nth-child(7) {
+            left: 70%;
+            animation-delay: 2.5s;
+            animation-duration: 17s;
+        }
+
+        .particle:nth-child(8) {
+            left: 80%;
+            animation-delay: 4.5s;
+            animation-duration: 19s;
+        }
+
+        .particle:nth-child(9) {
+            left: 90%;
+            animation-delay: 1.5s;
+            animation-duration: 11s;
+        }
+
+        .particle:nth-child(10) {
+            left: 15%;
+            animation-delay: 6s;
+            animation-duration: 20s;
+        }
+    </style>
+</body>
+
+</html>
